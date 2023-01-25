@@ -1,0 +1,16 @@
+.header {
+  margin: 0 auto;
+  width: 69.5%;
+  padding-top: 45px;
+}
+
+.header__logo {
+  display: block;
+
+}
+
+.header__line {
+  padding-top: 41px;
+  border-bottom: 1px solid red;
+  opacity: .7;
+}
