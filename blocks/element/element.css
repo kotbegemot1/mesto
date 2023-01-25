@@ -1,0 +1,41 @@
+.elements {
+  margin: 0 auto;
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-template-rows: 362px;
+  row-gap: 20px;
+  column-gap: 17px;
+}
+
+.element {
+  margin: 0;
+  /* padding: 0; */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.element__image {
+  display: block;
+  width: 100%;
+}
+
+.element__desc {
+  display: block;
+  padding: 25px 0 31px 21px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+
+  color: #000000;
+  background-color: #FFFFFF;
+
+}
+
+.element__like {
+  padding-right: 20px;
+  padding-top: 8px;
+  float: right;
+}
