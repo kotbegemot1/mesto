@@ -2,7 +2,10 @@
   width: 69.5%;
   margin: 40px auto 51px;
   display: flex;
+  /* flex-wrap: wrap; */
 }
+
+
 
 .profile__avatar {
   border-radius: 50%;
@@ -29,7 +32,9 @@
 }
 
 .profile__edit {
-  display: inline-block;
+  background-image: url(../../images/pencil.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   margin-left: 18px;
   margin-top: 15px;
   width: 24px;
@@ -41,7 +46,6 @@
 }
 
 .profile__description {
-
   margin-top: 10px;
   margin-bottom: 0;
   margin-left: 2px;
@@ -56,6 +60,9 @@
 
 
 .profile__add-new {
+  background-image: url(../../images/plus.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   margin-left: auto;
   width: 150px;
   height: 50px;
@@ -64,4 +71,53 @@
   border: 2px solid #FFFFFF;
   border-radius: 2px;
   align-self: center;
+}
+
+@media screen and (max-width: 950px) {
+  .profile {
+    width: 100%;
+    margin-bottom: 36px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .profile__add-new {
+    background-image: url(../../images/plus_16x16.svg);
+    margin-left: 0;
+  }
+  .profile__info {
+    margin: 29px 0 36px;
+  }
+
+  .profile__name {
+    font-size: calc(17px + 3.2vw);
+    text-align: center;
+    margin-left: 27px;
+  }
+
+  .profile__edit {
+    width: calc(15px + 1.43vw);
+    height: calc(15px + 1.43vw);
+    margin-left: 7px;
+    margin-top: 6px;
+  }
+
+  .profile__description {
+
+    font-size: calc(11px + 1vw);
+    line-height: 60%;
+    text-align: center;
+  }
+
+  .profile__add-new {
+    width: 282px;
+    height: 50px;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .profile__name {
+    font-size: 27px;
+    line-height: 33px;
+  }
 }

@@ -2,6 +2,7 @@
 .root {
   max-width: 1280px;
   background-color: blue;
+  background-color: #000;
   margin: 0 auto;
   box-sizing: border-box;
   -moz-osx-font-smoothing: grayscale;

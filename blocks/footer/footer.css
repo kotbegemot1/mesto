@@ -16,3 +16,20 @@
 
   color: #545454;
 }
+
+@media screen and (max-width: 844px) {
+  .footer {
+    width: 88.3%;
+  }
+
+  .footer__copyright {
+    font-size: calc(7px + 2.2vw);
+    line-height: 114%;
+  }
+
+  .footer__copyright {
+    padding-top: 48px;
+    padding-bottom: 36px;
+
+  }
+}

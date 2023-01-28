@@ -18,15 +18,16 @@
     <div class="header__line"></div>
   </header>
 
+  <main class="content">
   <section class="profile">
     <img src="./images/avatar.jpg" alt="Аватар профайла" class="profile__avatar">
     <div class="profile__info">
       <h2 class="profile__name">Жак-Ив Кусто</h2>
-      <button class="profile__edit"><img src="./images/pencil.svg" alt="Карандаш"></button>
+      <button class="profile__edit"></button>
       <p class="profile__description">Исследователь океана</p>
 
     </div>
-    <button class="profile__add-new"><img src="./images/plus.svg" alt="Плюс"></button>
+    <button class="profile__add-new"></button>
   </section>
 
   <section class="elements">
@@ -55,9 +56,22 @@
       <figurcaption class="element__desc">Уральские горы<img src="./images/heart.svg" alt="лайк" class="element__like"></figurcaption>
     </figure>
   </section>
-  <section class="footer">
+</main>
+  <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
-  </section>
+  </footer>
+
+  <div class="popup popup_hidden">
+    <div class="popup__container">
+      <button class="popup__abort-button"></button>
+
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <input type="text" class="popup__edit-info">
+      <input type="text" class="popup__edit-info">
+      <button class="popup__save-button">Сохранить</button>
+    </div>
+  </div>
+
 </body>
 
 </html>

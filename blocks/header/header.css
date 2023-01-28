@@ -6,11 +6,36 @@
 
 .header__logo {
   display: block;
-
 }
 
 .header__line {
   padding-top: 41px;
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid #545454;
   opacity: .7;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding-top: calc(18px + 3.1vw);
+
+  }
+  .header__logo {
+    width: calc(72px + 9.1vw);
+    min-width: 103.7px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .header__logo {
+    margin-left: 28px;
+  }
+
+  .header__line {
+    padding-top: 31px;
+  }
 }
