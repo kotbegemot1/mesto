@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Страница про интересные места в России">
     <meta name="author" content="Евгений Кольтяпин">
     <link rel="stylesheet" href="./pages/index.css">
-    <title>russian-travel</title>
+    <title>mesto</title>
   </head>
 
 <body class="root">
@@ -22,56 +21,56 @@
   <section class="profile">
     <img src="./images/avatar.jpg" alt="Аватар профайла" class="profile__avatar">
     <div class="profile__info">
-      <h2 class="profile__name">Жак-Ив Кусто</h2>
-      <button class="profile__edit"></button>
+      <h1 class="profile__name">Жак-Ив Кусто</h1>
+      <button class="profile__edit button button_hover"></button>
       <p class="profile__description">Исследователь океана</p>
-
     </div>
-    <button class="profile__add-new"></button>
+    <button class="profile__add-new button button_hover"></button>
   </section>
 
   <section class="elements">
     <figure class="element">
-      <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="element__image">
-      <figurcaption class="element__desc">Карачаевск<img src="./images/heart.svg" alt="лайк" class="element__like"></figurcaption>
+      <img src="./images/varenna.jpg" alt="Варенна" class="element__image">
+      <figurcaption class="element__desc"><p class="element__text">Варенна</p><button class="element__like button"></button></figurcaption>
     </figure>
     <figure class="element">
-      <img src="./images/elbrus.png" alt="Эльбрус" class="element__image">
-      <figurcaption class="element__desc">Гора Эльбрус<img src="./images/heart.svg" alt="лайк" class="element__like"></figurcaption>
+      <img src="./images/siagrao.jpg" alt="Сиаргао" class="element__image">
+      <figurcaption class="element__desc"><p class="element__text">Сиаргао</p><button class="element__like button"></button></figurcaption>
+    </figure>
+    <figure class="element">
+      <img src="./images/venezia.jpg" alt="Венеция" class="element__image">
+      <figurcaption class="element__desc"><p class="element__text">Венеция</p><button class="element__like button"></button></figurcaption>
     </figure>
     <figure class="element">
       <img src="./images/dombai.png" alt="Домбай" class="element__image">
-      <figurcaption class="element__desc">Домбай<img src="./images/heart.svg" alt="лайк" class="element__like"></figurcaption>
+      <figurcaption class="element__desc"><p class="element__text">Домбай</p><button class="element__like button"></button></figurcaption>
     </figure>
     <figure class="element">
-      <img src="./images/karachaevsk.jpg" alt="Алтайские горы" class="element__image">
-      <figurcaption class="element__desc">Алтайские горы<img src="./images/heart.svg" alt="лайк" class="element__like"></figurcaption>
+      <img src="./images/elbrus.png" alt="Эльбрус" class="element__image">
+      <figurcaption class="element__desc"><p class="element__text">Гора Эльбрус</p><button class="element__like button"></button></figurcaption>
     </figure>
     <figure class="element">
-      <img src="./images/elbrus.png" alt="Кавказкие горы" class="element__image">
-      <figurcaption class="element__desc">Кавказкие горы<img src="./images/heart.svg" alt="лайк" class="element__like"></figurcaption>
-    </figure>
-    <figure class="element">
-      <img src="./images/dombai.png" alt="Карачаево-Черкесия" class="element__image">
-      <figurcaption class="element__desc">Уральские горы<img src="./images/heart.svg" alt="лайк" class="element__like"></figurcaption>
+      <img src="./images/karachaevsk.jpg" alt="Карачаево-Черкесия" class="element__image">
+      <figurcaption class="element__desc"><p class="element__text">Карачаево-Черкесия</p><button class="element__like button"></button></figurcaption>
     </figure>
   </section>
 </main>
+
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
 
-  <div class="popup popup_hidden">
+  <div class="popup">
     <div class="popup__container">
-      <button class="popup__abort-button"></button>
-
+      <button class="popup__abort-button button button_hover"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
       <input type="text" class="popup__edit-info">
       <input type="text" class="popup__edit-info">
-      <button class="popup__save-button">Сохранить</button>
+      <button class="popup__save-button button">Сохранить</button>
     </div>
   </div>
 
+  <script src="index.js"></script>
 </body>
 
 </html>

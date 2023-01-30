@@ -4,7 +4,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
@@ -13,13 +13,13 @@
   box-sizing: border-box;
 }
 
-.popup_hidden {
-  display: none;
+.popup_open {
+  display: flex;
 }
 
 .popup__container {
   position: relative;
-  margin-bottom: calc(270px - 15vw);
+  margin-bottom: 230px;
   max-width: 430px;
   width: 100%;
   min-width: 282px;
@@ -81,6 +81,10 @@
   border-radius: 2px;
 }
 
+.popup__save-button:hover {
+  opacity: .8;
+}
+
 .popup__abort-button {
   background-image: url(../../images/close_butt.svg);
   background-repeat: no-repeat;
@@ -108,6 +112,7 @@
   .popup__container {
     padding: 25px 22px;
     max-height: 322px;
+    margin-bottom: 340px;
   }
 
   .popup__title {
