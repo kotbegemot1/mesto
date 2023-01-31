@@ -17,15 +17,10 @@
 
 @media screen and (max-width: 950px) {
   .profile__name {
+    max-width: 301px;
     font-size: calc(17px + 3.2vw);
     text-align: center;
     margin-left: 27px;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .profile__name {
-    max-width: 189px;
   }
 }
 
@@ -33,5 +28,6 @@
   .profile__name {
     font-size: 27px;
     line-height: 33px;
+    max-width: 189px;
   }
 }

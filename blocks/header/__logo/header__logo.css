@@ -1,16 +1,23 @@
 .header__logo {
-  display: block;
+  background-image: url(../../../images/Logo.svg);
+  background-repeat: no-repeat;
+  background-size: 142px;
+  padding-bottom: 72px;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {
   .header__logo {
-    width: calc(72px + 9.1vw);
-    min-width: 103.7px;
+    background-size: 103.7px;
+    background-position: 26px;
+    padding-bottom: 62px;
+
   }
 }
-
 @media screen and (max-width: 320px) {
   .header__logo {
-    margin-left: 28px;
+    padding-bottom: 81px;
+
   }
 }
