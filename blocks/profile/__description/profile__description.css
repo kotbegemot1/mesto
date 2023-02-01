@@ -18,13 +18,13 @@
 @media screen and (max-width: 950px) {
   .profile__description {
     font-size: calc(11px + 1vw);
-    text-align: center;
   }
 }
 
 @media screen and (max-width: 425px) {
   .profile__description {
     max-width: 282px;
+    margin: 0 auto;
   }
 }
 
