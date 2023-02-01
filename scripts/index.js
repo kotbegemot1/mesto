@@ -13,14 +13,14 @@ let inputDescription = popupFormTarget.querySelector('.popup__edit-info_field_de
 
 // функция открытия попапа
 let handleEditButtonClick = function () {
-  popupTarget.classList.add('popup_open');
+  popupTarget.classList.add('popup_opened');
   inputName.value = nameProfile.textContent;
   inputDescription.value = descriptionProfile.textContent;
 }
 
 // функция закрытия попапа
 let handleCloseButtonClick = function () {
-  popupTarget.classList.remove('popup_open');
+  popupTarget.classList.remove('popup_opened');
 }
 
 // функиция сохранения информации
@@ -28,7 +28,7 @@ let saveInfoButtonClick = function (evt) {
   evt.preventDefault();
   nameProfile.textContent = inputName.value;
   descriptionProfile.textContent = inputDescription.value;
-  popupTarget.classList.remove('popup_open');
+  popupTarget.classList.remove('popup_opened');
 }
 
 // слушатели
