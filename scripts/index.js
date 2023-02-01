@@ -5,7 +5,7 @@ let editProfile = document.querySelector('.profile__edit');
 // переменные попап
 let popupTarget = document.querySelector('.popup');
 let popupFormTarget = popupTarget.querySelector('.popup__form');
-let closePopupBtn = popupFormTarget.querySelector('.popup__abort-button');
+let closePopupBtn = popupTarget.querySelector('.popup__abort-button');
 let saveInfoBtn = popupFormTarget.querySelector('.popup__save-button');
 // инпуты попап
 let inputName = popupFormTarget.querySelector('.popup__edit-info_field_name')
