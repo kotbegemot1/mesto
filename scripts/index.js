@@ -88,21 +88,21 @@ initialCards.forEach((num) => {
 });
 
 // функция открытия попапа редактирования профиля
-const handleEditButtonClick = function () {
+const editButtonClick = function () {
   popupEditProfile.classList.add('popup_opened');
   inputName.value = nameProfile.textContent;
   inputDescription.value = descriptionProfile.textContent;
 }
 
 // функция открытия попапа добавления карточки
-const handleAddCardBtnClicl = function () {
+const addCardBtnClick = function () {
   popupAddCard.classList.add('popup_opened');
   inputTitle.value = '';
   inputUrl.value = '';
 }
 
 // функция закрытия попапа
-function popupClose(evt) {
+function closePopup(evt) {
   const popupTarget = evt.target.closest('.popup');
   popupTarget.classList.remove('popup_opened');
 }
@@ -126,12 +126,12 @@ const saveNewCardButtonClick = function (evt) {
 
 // слушатели
 // изменение профайла
-editProfileBtn.addEventListener('click', handleEditButtonClick);
+editProfileBtn.addEventListener('click', editButtonClick);
 popupFormEditProfile.addEventListener('submit', saveInfoButtonClick);
 
 // добавление карточек
-addCardBtn.addEventListener('click', handleAddCardBtnClicl);
+addCardBtn.addEventListener('click', addCardBtnClick);
 popupFormAddCard.addEventListener('submit', saveNewCardButtonClick);
 
 // удаление карочек
-closeEditProfileBtns.forEach( popup => popup.addEventListener('click', popupClose));
+closeEditProfileBtns.forEach( popup => popup.addEventListener('click', closePopup));
