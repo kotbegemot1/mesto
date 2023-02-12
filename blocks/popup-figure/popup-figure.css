@@ -1,0 +1,22 @@
+.popup-figure {
+  position: relative;
+  box-sizing: border-box;
+
+}
+
+.popup-figure__image {
+  display: block;
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.popup-figure__figurecaption {
+  margin: 10px 0 0;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+
+  color: #FFFFFF;
+}
