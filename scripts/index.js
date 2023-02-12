@@ -24,6 +24,9 @@ const inputTitle = popupFormAddCard.querySelector('.popup__input-info_field_titl
 const inputUrl = popupFormAddCard.querySelector('.popup__input-info_field_url')
 
 // переменные карточек
+const popupImgTarget = document.querySelector('.popup_type_image')
+const elements = document.querySelector('.elements');
+const cardTemplate = document.querySelector('.card-template').content;
 const initialCards = [
   {
     name: 'Архыз',
@@ -51,26 +54,30 @@ const initialCards = [
   }
 ];
 
-const elements = document.querySelector('.elements');
-const cardTemplate = document.querySelector('.card-template').content;
-// let cardElement;
-
 // функция добавления карточек в html
 function addCardToHTML(title, link) {
   const cardElement = cardTemplate.cloneNode(true);
-  const likeBtn = cardElement.querySelector('.element__like')
-  const deleteBtn = cardElement.querySelector('.element__delete')
+  const likeBtn = cardElement.querySelector('.element__like');
+  const deleteBtn = cardElement.querySelector('.element__delete');
+  const cardImage = cardElement.querySelector('.element__image');
 
-  cardElement.querySelector('.element__image').src = link;
-  cardElement.querySelector('.element__image').alt = title;
+  cardImage.src = link;
+  cardImage.alt = title;
   cardElement.querySelector('.element__text').textContent = title;
+
+  cardImage.addEventListener('click', (evt) => {
+    popupImgTarget.querySelector('.popup-figure__image').src = link;
+    popupImgTarget.querySelector('.popup-figure__image').alt = title;
+    popupImgTarget.querySelector('.popup-figure__figurecaption').textContent = title;
+    popupImgTarget.classList.add('popup_opened');
+  });
 
   likeBtn.addEventListener('click', evt => evt.target.classList.toggle('element__like_active'));
   deleteBtn.addEventListener('click', evt => {
     console.log(evt);
     const targetBtn = evt.target.closest('.element');
     targetBtn.remove('element');
-  })
+  });
 
   elements.append(cardElement);
 }
@@ -94,11 +101,10 @@ const handleAddCardBtnClicl = function () {
   inputUrl.value = '';
 }
 
-// // функция закрытия попапа
+// функция закрытия попапа
 function popupClose(evt) {
   const popupTarget = evt.target.closest('.popup');
   popupTarget.classList.remove('popup_opened');
-  console.log(popupTarget);
 }
 
 // функиция сохранения информации
