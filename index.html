@@ -36,13 +36,25 @@
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_type_edit-profile">
     <div class="popup__container">
       <button type="reset" class="popup__abort-button button"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form action="/" name="popup-form" class="popup__form">
-        <input type="text" name="name-field" class="popup__edit-info popup__edit-info_field_name">
-        <input type="text" name="description-field" class="popup__edit-info popup__edit-info_field_description">
+      <form action="/" name="popup-form" class="popup__form popup__form_type_edit-profile">
+        <input type="text" name="name-field" class="popup__input-info popup__input-info_field_name" required>
+        <input type="text" name="description-field" class="popup__input-info popup__input-info_field_description" required>
+        <button type="submit" class="popup__save-button button">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_add-card">
+    <div class="popup__container">
+      <button type="reset" class="popup__abort-button button"></button>
+      <h3 class="popup__title">Новое место</h3>
+      <form action="/" name="popup-form" class="popup__form popup__form_type_add-card">
+        <input type="text" name="name-field" placeholder="Название" class="popup__input-info popup__input-info_field_title" required>
+        <input type="url" name="description-field" placeholder="Ссылка на картинку" class="popup__input-info popup__input-info_field_url" required>
         <button type="submit" class="popup__save-button button">Сохранить</button>
       </form>
     </div>
@@ -51,6 +63,8 @@
   <template class="card-template">
     <article class="element">
       <img src="" alt="" class="element__image">
+      <!-- <div class="element__image"><button type="button" class="element__delete"><img src="./images/basket.svg" alt="корзина"></button></div> -->
+      <button type="button" class="element__delete button"><img src="./images/basket.svg" alt="корзина"></button>
       <div class="element__desc">
         <h2 class="element__text"></h2>
         <button type="button" class="element__like button"></button>
