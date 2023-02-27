@@ -6,6 +6,7 @@ const addCardBtn = document.querySelector('.profile__add-new');
 
 // переменные попап
 const abortButtons = document.querySelectorAll('.popup__abort-button');
+const popups = document.querySelectorAll('.popup');
 
 // переменные попап открытие изображения
 const popupImgTarget = document.querySelector('.popup_type_image');
@@ -30,13 +31,25 @@ const inputUrl = popupFormAddCard.querySelector('.popup__input-info_field_url')
 const elements = document.querySelector('.elements');
 const cardTemplate = document.querySelector('.card-template').content;
 
+// хэндлер для закрытия кнопкой Esc
+function handleBtnEsc(evt) {
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+  }
+  // console.log(evt.key);
+}
+
 // функция окрытие попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', handleBtnEsc)
 }
+
 // функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleBtnEsc)
 }
 
 // функция добавления карточек в html
@@ -61,8 +74,8 @@ function addCardToHTML(title, link) {
 
   likeBtn.addEventListener('click', evt => evt.target.classList.toggle('element__like_active'));
 
-  deleteBtn.addEventListener('click', () => elementToDel.remove()); // не получается сделать через cardElement.remove(),
-                                                                    // потому что у меня cardElement это document-fragment
+  deleteBtn.addEventListener('click', () => elementToDel.remove());
+
   return cardElement
 }
 
@@ -80,8 +93,10 @@ const editButtonClick = function () {
 
 // функция закрытия попапов кнопкой крестиком
 function closePopupByBtns(evt) {
-  const popupAbortBtn = evt.target.closest('.popup');
-  closePopup(popupAbortBtn);
+  if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__abort-button')) {
+    const popupAbortBtn = evt.target.closest('.popup');
+    closePopup(popupAbortBtn);
+  }
 }
 
 // функция добавления новой карточки
@@ -118,4 +133,4 @@ addCardBtn.addEventListener('click', addCardBtnClick);
 popupFormAddCard.addEventListener('submit', saveNewCardButtonClick);
 
 // закрытие карточек
-abortButtons.forEach( popup => popup.addEventListener('click', closePopupByBtns));
+popups.forEach(popup => popup.addEventListener('click', closePopupByBtns));
