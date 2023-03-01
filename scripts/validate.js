@@ -1,28 +1,28 @@
 // функция показа красной рамки при ошибке
-const showInputError = (formElement, formInput, errorMessage, inputErrorClass, errorClass) => {
-  const formError = formElement.querySelector(`.${formInput.id}-error`);
+const showInputError = (formInput, rest) => {
+  const formError = rest[0].querySelector(`.${formInput.id}-error`);
 
-  formInput.classList.add(inputErrorClass);
-  formError.textContent = errorMessage;
-  formError.classList.add(errorClass);
+  formInput.classList.add(rest[1]);
+  formError.textContent = formInput.validationMessage;
+  formError.classList.add(rest[2]);
 
 };
 
 // функция скрытие красной рамки при отсутствии ошибки
-const hideInputError = (formElement, formInput, inputErrorClass, errorClass) => {
-  const formError = formElement.querySelector(`.${formInput.id}-error`);
+const hideInputError = (formInput, rest) => {
+  const formError = rest[0].querySelector(`.${formInput.id}-error`);
 
-  formInput.classList.remove(inputErrorClass);
-  formError.classList.remove(errorClass);
+  formInput.classList.remove(rest[1]);
+  formError.classList.remove(rest[2]);
   formError.textContent = '';
 };
 
 // функция определяющая показать или скрыть рамку об ошибке
-const isValid = (formElement, formInput, inputErrorClass, errorClass) => {
+const isValid = (formInput, ...rest) => {
   if (!formInput.validity.valid) {
-    showInputError(formElement, formInput, formInput.validationMessage, inputErrorClass, errorClass);
+    showInputError(formInput, rest);
   } else {
-    hideInputError(formElement, formInput, inputErrorClass, errorClass);
+    hideInputError(formInput, rest);
   }
 };
 
@@ -31,36 +31,44 @@ const hasInvalidInput = (inputList) => {
   return inputList.some(inputElement => !inputElement.validity.valid)
 }
 
+const disabledBtn = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.add(inactiveButtonClass);
+  buttonElement.disabled = true;
+}
+
 // функция активации/деактивации кнопки
 const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(inactiveButtonClass);
+    disabledBtn(buttonElement, inactiveButtonClass);
   } else {
     buttonElement.classList.remove(inactiveButtonClass);
+    buttonElement.disabled = false;
+
   }
 }
 
-const setEventListeners = (formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass) => {
-  const inputList = Array.from(formElement.querySelectorAll(inputSelector));
-  const buttonElement = formElement.querySelector(submitButtonSelector);
+const setEventListeners = (formElement, rest) => {
+  // console.log(rest);
+  const inputList = Array.from(formElement.querySelectorAll(rest.inputSelector));
+  const buttonElement = formElement.querySelector(rest.submitButtonSelector);
 
-  toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+  toggleButtonState(inputList, buttonElement, rest.inactiveButtonClass);
 
   inputList.forEach((formInput) => {
     formInput.addEventListener('input', () => {
-      isValid(formElement, formInput, inputErrorClass, errorClass);
-      toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+      isValid(formInput, formElement, rest.inputErrorClass, rest.errorClass);
+      toggleButtonState(inputList, buttonElement, rest.inactiveButtonClass);
     });
   });
 };
 
 // функция для активации валидации
-const enableValidation = ({formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass}) => {
-
+const enableValidation = ({formSelector, ...rest}) => {
+  // console.log(rest.formSelector);
   const formList = Array.from(document.querySelectorAll(formSelector));
 
   formList.forEach((formElement) => {
-    setEventListeners(formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass);
+    setEventListeners(formElement, rest);
   });
 };
 
