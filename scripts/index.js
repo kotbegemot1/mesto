@@ -121,7 +121,7 @@ const saveInfoButtonClick = function (evt) {
   nameProfile.textContent = inputName.value;
   descriptionProfile.textContent = inputDescription.value;
   const saveBtn = evt.target.querySelector('.popup__save-button');
-  disabledBtn(saveBtn, 'popup__save-button_disabled');
+  disableBtn(saveBtn, 'popup__save-button_disabled');
   closePopup(popupEditProfile);
 }
 
@@ -133,7 +133,7 @@ const saveNewCardButtonClick = function (evt) {
   const url = inputUrl.value;
   elements.prepend(addCardToHTML(title, url));
   const saveBtn = evt.target.querySelector('.popup__save-button');
-  disabledBtn(saveBtn, 'popup__save-button_disabled');
+  disableBtn(saveBtn, 'popup__save-button_disabled');
   closePopup(popupAddCard);
 }
 

@@ -31,19 +31,22 @@ const hasInvalidInput = (inputList) => {
   return inputList.some(inputElement => !inputElement.validity.valid)
 }
 
-const disabledBtn = (buttonElement, inactiveButtonClass) => {
+const disableBtn = (buttonElement, inactiveButtonClass) => {
   buttonElement.classList.add(inactiveButtonClass);
   buttonElement.disabled = true;
+}
+
+const activateBtn = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.remove(inactiveButtonClass);
+  buttonElement.disabled = false;
 }
 
 // функция активации/деактивации кнопки
 const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
   if (hasInvalidInput(inputList)) {
-    disabledBtn(buttonElement, inactiveButtonClass);
+    disableBtn(buttonElement, inactiveButtonClass);
   } else {
-    buttonElement.classList.remove(inactiveButtonClass);
-    buttonElement.disabled = false;
-
+    activateBtn(buttonElement, inactiveButtonClass);
   }
 }
 
