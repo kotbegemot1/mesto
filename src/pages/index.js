@@ -25,7 +25,8 @@ user.setUserInfo({});
 
 // функция создания новой карточки
 const createCard = (data) => {
-  const card = new Card(data, '.card-template', handleCardImageClick)
+  const dataValues = Object.values(data);
+  const card = new Card(dataValues, '.card-template', handleCardImageClick)
   const cardElement = card.generateCard();
   cardsList.addItem(cardElement);
 }

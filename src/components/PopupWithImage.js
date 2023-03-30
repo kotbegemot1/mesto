@@ -8,6 +8,7 @@ export default class PopupWithImage extends Popup {
   }
   // переопределение метода open: вставка картинки с изображением в попап
   open(link, title) {
+    console.log(link, title);
     super.open();
     this.popupFigureImage.src = link;
     this.popupFigureImage.alt = title;
