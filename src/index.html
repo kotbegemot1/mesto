@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Евгений Кольтяпин">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>mesto</title>
   </head>
 
@@ -18,7 +17,7 @@
 
   <main class="content">
   <section class="profile">
-    <img src="./images/avatar.jpg" alt="Аватар профайла" class="profile__avatar">
+    <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар профайла" class="profile__avatar">
     <div class="profile__info">
       <h1 class="profile__name"></h1>
       <button type="button" class="profile__edit button"></button>
@@ -81,14 +80,13 @@
   <template class="card-template">
     <article class="element">
       <img class="element__image">
-      <button type="button" class="element__delete button"><img src="./images/basket.svg" alt="корзина"></button>
+      <button type="button" class="element__delete button"><img src="<%=require('./images/basket.svg')%>" alt="корзина"></button>
       <div class="element__desc">
         <h2 class="element__text"></h2>
         <button type="button" class="element__like button"></button>
       </div>
     </article>
   </template>
-  <script type="module" src="./pages/index.js"></script>
 </body>
 
 </html>

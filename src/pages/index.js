@@ -7,6 +7,7 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 
+import '../pages/index.css';
 
 // переменные
 const editProfileBtn = document.querySelector('.profile__edit');
