@@ -1,11 +1,12 @@
-export class Card {
-  constructor(num, template, handleCardImageClick) {
-    this._title = num.name;
-    this._link = num.link;
+export default class Card {
+  constructor({name, link}, template, handleCardImageClick) {
+    this._title = name;
+    this._link = link;
+    // console.log(this._title, this._link);
     this._template = template;
     this._handleCardImageClick = handleCardImageClick
   }
-
+  // получение шаблона
   _getTemplate() {
     const cardElement = document
     .querySelector(this._template)
@@ -15,7 +16,7 @@ export class Card {
 
     return cardElement
   }
-
+  // генерация самого элемента
   generateCard() {
     this._element = this._getTemplate();
 
