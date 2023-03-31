@@ -1,4 +1,10 @@
-import { initialCards, validationConfig } from "../utils/tools.js";
+import {
+  initialCards,
+  validationConfig,
+  editProfileBtn,
+  addCardBtn,
+  userObject
+} from '../utils/constants.js'
 
 import Section from "../components/Section.js";
 import Card  from "../components/Card.js";
@@ -9,16 +15,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 
 import '../pages/index.css';
 
-// переменные
-const editProfileBtn = document.querySelector('.profile__edit');
-const addCardBtn = document.querySelector('.profile__add-new');
-
-// заготовка UserInfo
-const userObject = {
-  selectorName: '.profile__name',
-  selectorDescription: '.profile__description'
-}
-
 // экземпляр пользователя
 const user = new UserInfo(userObject);
 user.setUserInfo({});
@@ -27,8 +23,7 @@ user.setUserInfo({});
 const createCard = (data) => {
   const dataValues = Object.values(data);
   const card = new Card(dataValues, '.card-template', handleCardImageClick)
-  const cardElement = card.generateCard();
-  cardsList.addItem(cardElement);
+  return card.generateCard();
 }
 
 // карточки при загрузке страницы
@@ -36,7 +31,7 @@ const cardsList = new Section(
   {
     items: initialCards,
     renderer: (initialCard) => {
-      createCard(initialCard);
+      cardsList.addItem(createCard(initialCard));
     }
   },
   '.elements'
@@ -55,7 +50,9 @@ const popupEdit = new PopupWithForm('.popup_type_edit-profile', handleEditFormSu
 popupEdit.setEventListeners();
 
 // экземпляры класса добавления карточки
-const popupAdd = new PopupWithForm('.popup_type_add-card', createCard);
+const popupAdd = new PopupWithForm('.popup_type_add-card', ({title, link}) => {
+  cardsList.addItem(createCard({title, link}));
+});
 popupAdd.setEventListeners();
 
 // экземпляр класса открытия карточки

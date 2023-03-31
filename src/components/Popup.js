@@ -1,6 +1,7 @@
 export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
+    this.handleEscCloseMediator = this._handleEscClose.bind(this);
   }
   // хендлер закрытие кнопкой ESC
   _handleEscClose(evt) {
@@ -11,7 +12,6 @@ export default class Popup {
   // открыть попап
   open() {
     this._popup.classList.add('popup_opened');
-    this.handleEscCloseMediator = this._handleEscClose.bind(this);
     document.addEventListener('keydown', this.handleEscCloseMediator)
   }
   // закрыть попап

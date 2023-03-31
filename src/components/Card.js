@@ -32,16 +32,25 @@ export default class Card {
     return this._element;
   }
 
+  _toggleLike= () => {
+    console.log(this);
+    this._elementLikeBtn.classList.toggle('element__like_active');
+  }
+
+  _deleteCard = () => {
+    this._element.remove();
+  }
+
+  _handleImageClick = () => {
+    this._handleCardImageClick(this._link, this._title);
+  }
+
   _setEventListeners() {
     // слушатель лайков
-    this._elementLikeBtn.addEventListener('click', evt => evt.target.classList.toggle('element__like_active'));
-
+    this._elementLikeBtn.addEventListener('click', this._toggleLike);
     // слушатель кнопки удаления
-    this._elementDeleteBtn.addEventListener('click', () => this._element.remove());
-
+    this._elementDeleteBtn.addEventListener('click', this._deleteCard);
     // слушатель картинки
-    this._elementImage.addEventListener('click', () => {
-      this._handleCardImageClick(this._link, this._title);
-    });
+    this._elementImage.addEventListener('click', this._handleImageClick);
   }
 }
