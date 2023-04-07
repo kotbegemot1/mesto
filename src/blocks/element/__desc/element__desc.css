@@ -1,7 +1,9 @@
 .element__desc {
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  padding: 25px 21px 26px 21px;
+  padding: 5px 17px 5px 21px;
+  min-height: 80px;
 
   color: #000000;
   background-color: #FFFFFF;

@@ -17,7 +17,9 @@
 
   <main class="content">
   <section class="profile">
+    <div class="profile__avatar-container">
     <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар профайла" class="profile__avatar">
+    </div>
     <div class="profile__info">
       <h1 class="profile__name"></h1>
       <button type="button" class="profile__edit button"></button>
@@ -69,6 +71,28 @@
     </div>
   </div>
 
+  <div class="popup popup_type_card-delete">
+    <div class="popup__container popup__container_type_delete">
+      <button type="reset" class="popup__abort-button button"></button>
+      <h3 class="popup__title popup__title_type_delete">Вы уверены?</h3>
+      <button type="submit" class="popup__save-button button">Да</button>
+    </div>
+  </div>
+
+  <div class="popup popup_type_avatar-update">
+    <div class="popup__container popup__container_type_avatar-update">
+      <button type="reset" class="popup__abort-button button"></button>
+      <h3 class="popup__title">Обновить аватар</h3>
+      <form action="/" name="avatar-update" class="popup__form popup__form_type_avatar-update">
+
+        <input type="url" id="url-input" name="url" placeholder="Ссылка на картинку" class="popup__input-info popup__input-info_field_avatar" required>
+        <span class="url-input-error popup__error"></span>
+
+        <button type="submit" class="popup__save-button button">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
   <div class="popup popup_type_image">
     <article class="popup-figure">
       <button type="reset" class="popup__abort-button button"></button>
@@ -83,7 +107,10 @@
       <button type="button" class="element__delete button"><img src="<%=require('./images/basket.svg')%>" alt="корзина"></button>
       <div class="element__desc">
         <h2 class="element__text"></h2>
+        <div class="element__like-container">
         <button type="button" class="element__like button"></button>
+        <p class="element__like-counter">1</p>
+      </div>
       </div>
     </article>
   </template>
