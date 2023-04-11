@@ -1,10 +1,11 @@
 export default class Card {
-  constructor(data, template, handleCardImageClick) {
+  constructor(data, template, handleCardImageClick, deleteCardConfirm) {
     this._title = data[0];
     this._link = data[1];
     // console.log(this._title, this._link);
     this._template = template;
-    this._handleCardImageClick = handleCardImageClick
+    this._handleCardImageClick = handleCardImageClick;
+    this._deleteCardConfirm = deleteCardConfirm;
   }
   // получение шаблона
   _getTemplate() {
@@ -38,6 +39,7 @@ export default class Card {
   }
 
   _deleteCard = () => {
+    this._deleteCardConfirm()
     this._element.remove();
   }
 

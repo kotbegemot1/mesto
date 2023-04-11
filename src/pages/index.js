@@ -3,7 +3,8 @@ import {
   validationConfig,
   editProfileBtn,
   addCardBtn,
-  userObject
+  userObject,
+  avatarUpdateBtn
 } from '../utils/constants.js'
 
 import Section from "../components/Section.js";
@@ -12,6 +13,7 @@ import FormValidator from "../components/FormValidator.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirmDel from "../components/PopupWithConfirmDel.js";
 
 import '../pages/index.css';
 
@@ -22,7 +24,7 @@ user.setUserInfo({});
 // функция создания новой карточки
 const createCard = (data) => {
   const dataValues = Object.values(data);
-  const card = new Card(dataValues, '.card-template', handleCardImageClick)
+  const card = new Card(dataValues, '.card-template', handleCardImageClick, deleteCardConfirm)
   return card.generateCard();
 }
 
@@ -49,6 +51,16 @@ const handleEditFormSubmit = function (data) {
 const popupEdit = new PopupWithForm('.popup_type_edit-profile', handleEditFormSubmit);
 popupEdit.setEventListeners();
 
+// хендлер для сабмита формы редактирования профиля
+const handleUpdateAvatarSubmit = function (data) {
+  user.updateAvatar(data);
+}
+
+// экземпляры класса попапа обновления аватара
+const popupUpdateAvatar = new PopupWithForm('.popup_type_avatar-update', handleUpdateAvatarSubmit);
+popupUpdateAvatar.setEventListeners();
+
+
 // экземпляры класса добавления карточки
 const popupAdd = new PopupWithForm('.popup_type_add-card', ({title, link}) => {
   cardsList.addItem(createCard({title, link}));
@@ -63,11 +75,26 @@ function handleCardImageClick(link, title) {
   popupOpenImage.open(link, title);
 }
 
+// экземпляр класса подтверждения удаления
+const popupConfirmDel = new PopupWithConfirmDel('.popup_type_card-delete');
+popupConfirmDel.setEventListeners();
+
+function deleteCardConfirm() {
+  popupConfirmDel.open();
+  // console.log('hello, deleteCardConfirm');
+}
+
 // функция заполнения редактирования профиля
 const editButtonClick = function () {
   popupEdit.setInputValues(user.getUserInfo());
   formValidators['profile-form'].resetValidationFields();
   popupEdit.open();
+}
+
+const updateButtonClick = function() {
+  // console.log('hello, from update');
+  formValidators['avatar-update'].resetValidationFields();
+  popupUpdateAvatar.open();
 }
 
 // функция добавления новой карточки
@@ -79,6 +106,9 @@ const addCardBtnClick = function () {
 // слушатели
 // изменение профайла
 editProfileBtn.addEventListener('click', editButtonClick);
+
+// обновление аватара
+avatarUpdateBtn.addEventListener('click', updateButtonClick)
 
 // добавление карточек
 addCardBtn.addEventListener('click', addCardBtnClick);

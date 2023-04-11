@@ -1,11 +1,13 @@
 // переменные
 export const editProfileBtn = document.querySelector('.profile__edit');
 export const addCardBtn = document.querySelector('.profile__add-new');
+export const avatarUpdateBtn = document.querySelector('.profile__avatar');
 
 // заготовка UserInfo
 export const userObject = {
   selectorName: '.profile__name',
-  selectorDescription: '.profile__description'
+  selectorDescription: '.profile__description',
+  selectorAvatar: '.profile__avatar'
 }
 
 export const validationConfig = {

@@ -1,6 +1,6 @@
 .popup__error {
   opacity: 0;
-  display: inline-block;
+  display: block;
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
