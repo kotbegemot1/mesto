@@ -57,24 +57,25 @@ const createCard = (item, userId) => {
 const handleAddlike = (card, cardId) => {
   console.log(card, cardId);
   api.putLike(cardId)
-    .then(res => {
-      card.updateLike(res)
-    })
+    .then(res => card.updateLike(res))
+    .catch(err => console.log(err))
 }
 
 const handleDeletelike = (card, cardId) => {
   console.log(card, cardId);
   api.deleteLike(cardId)
-  .then(res => {
-    card.updateLike(res)
-  })
+  .then(res => card.updateLike(res))
+  .catch(err => console.log(err))
 }
 
 // хендлер для сабмита формы редактирования профиля
 const handleEditFormSubmit = function (data) {
-  api.editUserInfo(data).then(res => {
-    user.setUserInfo(res)
-  })
+  popupEdit.renderLoading(true);
+  api.editUserInfo(data)
+  .then(res => user.setUserInfo(res))
+  .catch(err => console.log(err))
+  .finally(() => popupEdit.renderLoading(false))
+
 }
 
 // экземпляры класса попапа редактирования профиля
@@ -83,11 +84,11 @@ popupEdit.setEventListeners();
 
 // хендлер для сабмита формы обновления аватара
 const handleUpdateAvatarSubmit = function (inputData) {
+  popupUpdateAvatar.renderLoading(true);
   api.updateUserAvatar(inputData)
-  .then(avatar => {
-    user.updateAvatar(avatar);
-  })
-
+  .then(avatar => user.updateAvatar(avatar))
+  .catch(err => console.log(err))
+  .finally(() => popupUpdateAvatar.renderLoading(false))
 }
 
 // экземпляры класса попапа обновления аватара
@@ -98,12 +99,9 @@ popupUpdateAvatar.setEventListeners();
 const popupAdd = new PopupWithForm('.popup_type_add-card', (inputData) => {
   popupAdd.renderLoading(true);
   api.addNewCard(inputData)
-    .then((res) => {
-      cardsList.addItem(createCard(res, userId))
-    })
-    .finally(() => {
-      popupAdd.renderLoading(false);
-      })
+    .then((res) => cardsList.addItem(createCard(res, userId)))
+    .catch(err => console.log(err))
+    .finally(() => popupAdd.renderLoading(false))
 });
 popupAdd.setEventListeners();
 
