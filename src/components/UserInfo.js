@@ -1,31 +1,32 @@
 export default class UserInfo {
-  constructor({ selectorName, selectorDescription, selectorAvatar }) {
+  constructor({ selectorName, selectorAbout, selectorAvatar }) {
    this._name = document.querySelector(selectorName);
-   this._description = document.querySelector(selectorDescription);
+   this._about = document.querySelector(selectorAbout);
    this._avatar = document.querySelector(selectorAvatar);
-   console.log(typeof(this._avatar.src));
+  //  console.log(typeof(this._avatar.src));
   }
 
   // showUserInfo() {
   //   console.log(this._name.textContent);
-  //   console.log(this._description.textContent);
+  //   console.log(this._about.textContent);
   // }
 
   getUserInfo() {
     const userInfo = {
       name: this._name.textContent,
-      description: this._description.textContent
+      about: this._about.textContent
     }
 
     return userInfo
   }
 
-  setUserInfo({name='Жак-Ив Кусто', description='Исследователь океана'}) {
+  setUserInfo({name, about}) {
     this._name.textContent = name,
-    this._description.textContent = description
+    this._about.textContent = about
   }
 
-  updateAvatar = (data) => {
-    this._avatar.src = data.url;
+  updateAvatar = ({avatar}) => {
+    // console.log(avatar);
+    this._avatar.src = avatar;
   }
 }

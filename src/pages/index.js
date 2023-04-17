@@ -1,5 +1,5 @@
 import {
-  initialCards,
+  apiConfig,
   validationConfig,
   editProfileBtn,
   addCardBtn,
@@ -14,56 +14,96 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithConfirmDel from "../components/PopupWithConfirmDel.js";
+import Api from "../components/Api.js";
 
 import '../pages/index.css';
 
+// api
+const api = new Api(apiConfig);
+
 // экземпляр пользователя
 const user = new UserInfo(userObject);
-user.setUserInfo({});
+let userId;
 
-// функция создания новой карточки
-const createCard = (data) => {
-  const dataValues = Object.values(data);
-  const card = new Card(dataValues, '.card-template', handleCardImageClick, deleteCardConfirm)
-  return card.generateCard();
-}
+// объединение промисов, чтобы userId и initialCards загрузились одновременно
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userInfo, initialCards]) => {
+    // console.log(initialCards);
+    userId = userInfo._id;
+    user.setUserInfo(userInfo);
+    user.updateAvatar(userInfo);
+    cardsList.renderItems(initialCards, userId);
+  })
+  .catch(err => console.log(err))
 
 // карточки при загрузке страницы
 const cardsList = new Section(
   {
-    items: initialCards,
-    renderer: (initialCard) => {
-      cardsList.addItem(createCard(initialCard));
+    renderer: (initialCards, userId) => {
+      // console.log(initialCard);
+      cardsList.addItem(createCard(initialCards, userId));
     }
   },
   '.elements'
 )
-cardsList.renderItems();
 
-// попапы
+
+// функция создания новой карточки
+const createCard = (item, userId) => {
+  const card = new Card(item, userId, '.card-template', handleCardImageClick, handleDeleteClick, handleAddlike, handleDeletelike)
+  return card.generateCard();
+}
+
+const handleAddlike = (card, cardId) => {
+  console.log(card, cardId);
+  api.putLike(cardId)
+    .then(res => {
+      card.updateLike(res)
+    })
+}
+
+const handleDeletelike = (card, cardId) => {
+  console.log(card, cardId);
+  api.deleteLike(cardId)
+  .then(res => {
+    card.updateLike(res)
+  })
+}
 
 // хендлер для сабмита формы редактирования профиля
 const handleEditFormSubmit = function (data) {
-  user.setUserInfo(data)
+  api.editUserInfo(data).then(res => {
+    user.setUserInfo(res)
+  })
 }
 
 // экземпляры класса попапа редактирования профиля
 const popupEdit = new PopupWithForm('.popup_type_edit-profile', handleEditFormSubmit);
 popupEdit.setEventListeners();
 
-// хендлер для сабмита формы редактирования профиля
-const handleUpdateAvatarSubmit = function (data) {
-  user.updateAvatar(data);
+// хендлер для сабмита формы обновления аватара
+const handleUpdateAvatarSubmit = function (inputData) {
+  api.updateUserAvatar(inputData)
+  .then(avatar => {
+    user.updateAvatar(avatar);
+  })
+
 }
 
 // экземпляры класса попапа обновления аватара
 const popupUpdateAvatar = new PopupWithForm('.popup_type_avatar-update', handleUpdateAvatarSubmit);
 popupUpdateAvatar.setEventListeners();
 
-
 // экземпляры класса добавления карточки
-const popupAdd = new PopupWithForm('.popup_type_add-card', ({title, link}) => {
-  cardsList.addItem(createCard({title, link}));
+const popupAdd = new PopupWithForm('.popup_type_add-card', (inputData) => {
+  popupAdd.renderLoading(true);
+  api.addNewCard(inputData)
+    .then((res) => {
+      cardsList.addItem(createCard(res, userId))
+    })
+    .finally(() => {
+      popupAdd.renderLoading(false);
+      })
 });
 popupAdd.setEventListeners();
 
@@ -71,17 +111,24 @@ popupAdd.setEventListeners();
 const popupOpenImage = new PopupWithImage('.popup_type_image');
 popupOpenImage.setEventListeners();
 
-function handleCardImageClick(link, title) {
-  popupOpenImage.open(link, title);
+function handleCardImageClick(link, name) {
+  popupOpenImage.open(link, name);
 }
 
 // экземпляр класса подтверждения удаления
-const popupConfirmDel = new PopupWithConfirmDel('.popup_type_card-delete');
+const popupConfirmDel = new PopupWithConfirmDel('.popup_type_card-delete', handledeleteCard);
 popupConfirmDel.setEventListeners();
 
-function deleteCardConfirm() {
-  popupConfirmDel.open();
-  // console.log('hello, deleteCardConfirm');
+// хендлер подтверждения удаления карточки
+function handledeleteCard(element, cardId) {
+  api.deleteCard(cardId);
+  element.remove();
+}
+
+// хендлер при нажатии на корзину удаления карточки
+function handleDeleteClick(element, cardId) {
+  // console.log(element);
+  popupConfirmDel.open(element, cardId);
 }
 
 // функция заполнения редактирования профиля

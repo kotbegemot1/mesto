@@ -18,12 +18,12 @@
   <main class="content">
   <section class="profile">
     <div class="profile__avatar-container">
-    <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар профайла" class="profile__avatar">
+    <img alt="Аватар профайла" class="profile__avatar">
     </div>
     <div class="profile__info">
       <h1 class="profile__name"></h1>
       <button type="button" class="profile__edit button"></button>
-      <p class="profile__description"></p>
+      <p class="profile__about"></p>
     </div>
     <button type="button" class="profile__add-new button"></button>
   </section>
@@ -46,8 +46,8 @@
         <input type="text" id="name-input" name="name" class="popup__input-info popup__input-info_field_name" minlength="2" maxlength="40" required>
         <span class="name-input-error popup__error"></span>
 
-        <input type="text" id="description-input" name="description" class="popup__input-info popup__input-info_field_description" minlength="2" maxlength="200" required>
-        <span class="description-input-error popup__error"></span>
+        <input type="text" id="about-input" name="about" class="popup__input-info popup__input-info_field_about" minlength="2" maxlength="200" required>
+        <span class="about-input-error popup__error"></span>
 
         <button type="submit" class="popup__save-button button">Сохранить</button>
       </form>
@@ -60,13 +60,13 @@
       <h3 class="popup__title">Новое место</h3>
       <form action="/" name="card-form" class="popup__form popup__form_type_add-card">
 
-        <input type="text" id="title-input" name="title" placeholder="Название" class="popup__input-info popup__input-info_field_title" minlength="2" maxlength="30" required>
-        <span class="title-input-error popup__error"></span>
+        <input type="text" id="name-input" name="name" placeholder="Название" class="popup__input-info popup__input-info_field_name" minlength="2" maxlength="30" required>
+        <span class="name-input-error popup__error"></span>
 
-        <input type="link" id="link-input" name="link" placeholder="Ссылка на картинку" class="popup__input-info popup__input-info_field_link" required>
+        <input type="url" id="link-input" name="link" placeholder="Ссылка на картинку" class="popup__input-info popup__input-info_field_link" required>
         <span class="link-input-error popup__error"></span>
 
-        <button type="submit" class="popup__save-button button">Сохранить</button>
+        <button type="submit" class="popup__save-button button">Создать</button>
       </form>
     </div>
   </div>
@@ -85,8 +85,8 @@
       <h3 class="popup__title">Обновить аватар</h3>
       <form action="/" name="avatar-update" class="popup__form popup__form_type_avatar-update">
 
-        <input type="url" id="url-input" name="url" placeholder="Ссылка на картинку" class="popup__input-info popup__input-info_field_avatar" required>
-        <span class="url-input-error popup__error"></span>
+        <input type="url" id="avatar-input" name="avatar" placeholder="Ссылка на картинку" class="popup__input-info popup__input-info_field_avatar" required>
+        <span class="avatar-input-error popup__error"></span>
 
         <button type="submit" class="popup__save-button button">Сохранить</button>
       </form>
@@ -109,7 +109,7 @@
         <h2 class="element__text"></h2>
         <div class="element__like-container">
         <button type="button" class="element__like button"></button>
-        <p class="element__like-counter">1</p>
+        <p class="element__like-counter"></p>
       </div>
       </div>
     </article>

@@ -1,4 +1,4 @@
-.profile__description {
+.profile__about {
   max-width: 336px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -16,21 +16,21 @@
 }
 
 @media screen and (max-width: 950px) {
-  .profile__description {
+  .profile__about {
     font-size: calc(11px + 1vw);
     text-align: center;
   }
 }
 
 @media screen and (max-width: 425px) {
-  .profile__description {
+  .profile__about {
     max-width: 282px;
     margin: 0 auto;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .profile__description {
+  .profile__about {
     font-size: 14px;
     line-height: 17px;
     margin-top: 0;
