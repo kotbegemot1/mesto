@@ -1,8 +1,8 @@
 import {
   apiConfig,
   validationConfig,
-  editProfileBtn,
-  addCardBtn,
+  profileEditBtn,
+  cardAddBtn,
   userObject,
   avatarUpdateBtn
 } from '../utils/constants.js'
@@ -32,16 +32,16 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     userId = userInfo._id;
     user.setUserInfo(userInfo);
     user.updateAvatar(userInfo);
-    cardsList.renderItems(initialCards, userId);
+    cardsList.renderItems(initialCards.reverse())
   })
   .catch(err => console.log(err))
 
 // карточки при загрузке страницы
 const cardsList = new Section(
   {
-    renderer: (initialCards, userId) => {
+    renderer: (initialCards) => {
       // console.log(initialCard);
-      cardsList.addItem(createCard(initialCards, userId));
+      cardsList.addItem(createCard(initialCards));
     }
   },
   '.elements'
@@ -49,20 +49,20 @@ const cardsList = new Section(
 
 
 // функция создания новой карточки
-const createCard = (item, userId) => {
+const createCard = (item) => {
   const card = new Card(item, userId, '.card-template', handleCardImageClick, handleDeleteClick, handleAddlike, handleDeletelike)
   return card.generateCard();
 }
 
 const handleAddlike = (card, cardId) => {
-  console.log(card, cardId);
+  // console.log(card, cardId);
   api.putLike(cardId)
     .then(res => card.updateLike(res))
     .catch(err => console.log(err))
 }
 
 const handleDeletelike = (card, cardId) => {
-  console.log(card, cardId);
+  // console.log(card, cardId);
   api.deleteLike(cardId)
   .then(res => card.updateLike(res))
   .catch(err => console.log(err))
@@ -72,9 +72,12 @@ const handleDeletelike = (card, cardId) => {
 const handleEditFormSubmit = function (data) {
   popupEdit.renderLoading(true);
   // console.log({name: data.name, about: data.about});
-  console.log(data);
+  // console.log(data);
   api.editUserInfo(data)
-  .then(res => user.setUserInfo(res))
+  .then(res => {
+    user.setUserInfo(res);
+    popupEdit.close();
+  })
   .catch(err => console.log(err))
   .finally(() => popupEdit.renderLoading(false))
 
@@ -88,7 +91,10 @@ popupEdit.setEventListeners();
 const handleUpdateAvatarSubmit = function (inputData) {
   popupUpdateAvatar.renderLoading(true);
   api.updateUserAvatar(inputData)
-  .then(avatar => user.updateAvatar(avatar))
+  .then(avatar => {
+    user.updateAvatar(avatar);
+    popupUpdateAvatar.close();
+  })
   .catch(err => console.log(err))
   .finally(() => popupUpdateAvatar.renderLoading(false))
 }
@@ -101,7 +107,10 @@ popupUpdateAvatar.setEventListeners();
 const popupAdd = new PopupWithForm('.popup_type_add-card', (inputData) => {
   popupAdd.renderLoading(true);
   api.addNewCard({name: inputData.title, link: inputData.link})
-    .then((res) => cardsList.addItem(createCard(res, userId)))
+    .then((res) => {
+      cardsList.addItem(createCard(res));
+      popupAdd.close();
+    })
     .catch(err => console.log(err))
     .finally(() => popupAdd.renderLoading(false))
 });
@@ -121,8 +130,9 @@ popupConfirmDel.setEventListeners();
 
 // хендлер подтверждения удаления карточки
 function handledeleteCard(element, cardId) {
-  api.deleteCard(cardId);
-  element.remove();
+  api.deleteCard(cardId)
+  .then(() => {element.remove();})
+  .catch(err => console.log(err))
 }
 
 // хендлер при нажатии на корзину удаления карточки
@@ -145,20 +155,20 @@ const updateButtonClick = function() {
 }
 
 // функция добавления новой карточки
-const addCardBtnClick = function () {
+const cardAddBtnClick = function () {
   formValidators['card-form'].resetValidationFields();
   popupAdd.open();
 }
 
 // слушатели
 // изменение профайла
-editProfileBtn.addEventListener('click', editButtonClick);
+profileEditBtn.addEventListener('click', editButtonClick);
 
 // обновление аватара
 avatarUpdateBtn.addEventListener('click', updateButtonClick)
 
 // добавление карточек
-addCardBtn.addEventListener('click', addCardBtnClick);
+cardAddBtn.addEventListener('click', cardAddBtnClick);
 
 // валидация
 const formValidators = {}

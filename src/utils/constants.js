@@ -1,6 +1,6 @@
 // переменные
-export const editProfileBtn = document.querySelector('.profile__edit');
-export const addCardBtn = document.querySelector('.profile__add-new');
+export const profileEditBtn = document.querySelector('.profile__edit');
+export const cardAddBtn = document.querySelector('.profile__add-new');
 export const avatarUpdateBtn = document.querySelector('.profile__avatar');
 
 // заготовка UserInfo

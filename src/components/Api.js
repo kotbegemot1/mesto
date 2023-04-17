@@ -20,7 +20,6 @@ export default class Api {
       }
     })
     .then(res => this._checkResponse(res))
-    .catch(err => console.log(err))
   };
 
   getUserInfo() {
@@ -30,7 +29,6 @@ export default class Api {
       }
     })
       .then(res => this._checkResponse(res))
-      .catch(err => console.log(err))
   };
 
   editUserInfo({name, about}) {
@@ -46,7 +44,6 @@ export default class Api {
       })
     })
     .then(res => this._checkResponse(res))
-    .catch(err => console.log(err))
   }
 
   addNewCard({name, link}) {
@@ -62,7 +59,6 @@ export default class Api {
       })
     })
     .then(res => this._checkResponse(res))
-    .catch(err => console.log(err))
   }
 
   deleteCard(cardId) {
@@ -73,7 +69,6 @@ export default class Api {
       }
     })
     .then(res => this._checkResponse(res))
-    .catch(err => console.log(err))
   }
 
   putLike(cardId) {
@@ -84,7 +79,6 @@ export default class Api {
       }
     })
     .then(res => this._checkResponse(res))
-    .catch(err => console.log(err))
   }
 
   deleteLike(cardId) {
@@ -95,7 +89,6 @@ export default class Api {
       }
     })
     .then(res => this._checkResponse(res))
-    .catch(err => console.log(err))
   }
 
   updateUserAvatar(link) {
@@ -111,7 +104,6 @@ export default class Api {
       })
     })
     .then(res => this._checkResponse(res))
-    .catch(err => console.log(err))
   }
 }
 

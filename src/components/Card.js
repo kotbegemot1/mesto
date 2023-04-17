@@ -1,11 +1,11 @@
 export default class Card {
   constructor(item, userId, template, handleCardImageClick, handleDeleteClick, handleAddlike, handleDeletelike) {
     // console.log(item);
-    this._card = item
+    this._card = item;
     this._name = item.name;
     this._link = item.link;
     this._cardId = item._id;
-    this._card = item
+    this._card = item;
     // console.log(this._likes);
 
     this._ownerId = item.owner._id;
@@ -18,8 +18,6 @@ export default class Card {
     this._handleDeleteClick = handleDeleteClick;
     this._handleAddlike = handleAddlike;
     this._handleDeletelike = handleDeletelike;
-
-
   }
 
   // получение шаблона
