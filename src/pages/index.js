@@ -71,6 +71,8 @@ const handleDeletelike = (card, cardId) => {
 // хендлер для сабмита формы редактирования профиля
 const handleEditFormSubmit = function (data) {
   popupEdit.renderLoading(true);
+  // console.log({name: data.name, about: data.about});
+  console.log(data);
   api.editUserInfo(data)
   .then(res => user.setUserInfo(res))
   .catch(err => console.log(err))
@@ -98,7 +100,7 @@ popupUpdateAvatar.setEventListeners();
 // экземпляры класса добавления карточки
 const popupAdd = new PopupWithForm('.popup_type_add-card', (inputData) => {
   popupAdd.renderLoading(true);
-  api.addNewCard(inputData)
+  api.addNewCard({name: inputData.title, link: inputData.link})
     .then((res) => cardsList.addItem(createCard(res, userId)))
     .catch(err => console.log(err))
     .finally(() => popupAdd.renderLoading(false))
