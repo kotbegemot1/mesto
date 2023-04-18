@@ -10,11 +10,9 @@ export default class PopupWithConfirmDel extends Popup {
 
   }
   open(element, item) {
-    // console.log(element, item);
     super.open()
     this._element = element;
     this._item = item;
-    // console.log(this._item);
   }
 
   setEventListeners() {

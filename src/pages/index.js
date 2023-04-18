@@ -131,13 +131,12 @@ popupConfirmDel.setEventListeners();
 // хендлер подтверждения удаления карточки
 function handledeleteCard(element, cardId) {
   api.deleteCard(cardId)
-  .then(() => {element.remove();})
+  .then(() => element.deleteCard())
   .catch(err => console.log(err))
 }
 
 // хендлер при нажатии на корзину удаления карточки
 function handleDeleteClick(element, cardId) {
-  // console.log(element);
   popupConfirmDel.open(element, cardId);
 }
 

@@ -56,6 +56,10 @@ export default class Card {
     return this._element;
   }
 
+  deleteCard() {
+    this._element.remove();
+  }
+
   updateLike(card) {
     // console.log(card);
     this._likes = card.likes
@@ -69,17 +73,17 @@ export default class Card {
 
   _toggleLike = () => {
     if (this.likeChecker()) {
-      console.log('like');
+      // console.log('like');
       this._handleDeletelike(this, this._cardId);
 
     } else {
-      console.log('not like');
+      // console.log('not like');
       this._handleAddlike(this, this._cardId);
     }
   }
 
   _handleDelete = () => {
-    this._handleDeleteClick(this._element, this._cardId);
+    this._handleDeleteClick(this, this._cardId);
   }
 
   _handleImageClick = () => {
